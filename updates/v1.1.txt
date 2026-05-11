@@ -1,0 +1,30 @@
+BitProtocol v1.1 — Updates
+
+A. Bug Fix
+
+1. Aritmatika TX animasi dikoreksi (output 0.6 → 0.5 BTC, kembalian 0.19 → 0.29 BTC)
+2. UTXO spent tidak lagi nongol di dompet setelah broadcast
+3. UTXO penerima tidak ikut nyasar masuk dompet sendiri
+4. rbfMyTx duplicate ID dihapus (tidak dipakai JS, hanya noise di HTML)
+5. Unexpected token '}' syntax error — root cause: body fakeHash orphaned setelah IIFE injection, sudah diperbaiki
+6. Deskripsi Bab 10 di chapter list: full node vs SPV diganti on-chain vs Lightning
+
+B. Improvement
+
+1. Layout UTXO simulator dijadiin satu panel, dompet kiri dan form kanan, no more scroll marathon
+2. Summary Output / Kembalian / Fee tampil sekaligus di bawah form
+3. Pesan broadcast lebih informatif, user tau berapa terkirim dan berapa balik
+4. Toast notif muncul setelah broadcast: "TX berhasil di-broadcast! UTXO-mu berkurang X koin"
+5. UTXO diperbanyak dari 6 → 21 koin (~12 BTC total, tribute ke 21 juta supply)
+6. Peringatan saldo tipis muncul otomatis kalau koin tinggal 2 (kuning), 1 (oranye), atau 0 (merah)
+   - Tinggal 2 koin "Hemat dikit, bro. Bitcoin itu langka. 21 juta biji doang sedunia, kamu udah bakar sebagian besar milikmu sendiri."
+   - Tinggal 1 koin "Jangan kebablasan. ini bukan warung gorengan yang bisa pake bon dulu."
+   - Kosong total "Semua UTXO sudah hangus. Reset dulu ya beb."
+7. Simulasi Mempool (Bab 06)
+   - Ditambahkan penjelasan mempool — apa itu, analoginya, kenapa tx bisa stuck
+   - Simulasi mempool dipindahkan dari Bab 07 ke Bab 06 (posisi yang lebih logis)
+   - Step-by-step: pilih tx dari mempool → isi block → mining → cetak segel
+   - Locking flow: Auto-pilih harus sebelum Mining — keduanya tidak bisa dipencet sembarangan
+   - Auto-pilih menonaktifkan klik tx manual dan dirinya sendiri setelah dipencet
+   - Mining menonaktifkan semua tombol sampai selesai
+   - Reset mengembalikan semua ke state awal
